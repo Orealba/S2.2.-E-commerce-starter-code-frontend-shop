@@ -78,6 +78,9 @@ var total = 0;
 function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array
+//tengo que hacer un for para agregar al array cart los productos, cuando alguien le da al boton añadir, se debe llamar a la funt buy y agregar el producto al array
+
+
 }
 
 // Exercise 2
