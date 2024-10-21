@@ -85,11 +85,21 @@ function buy(id) {
     return;
   }
 
-  let productsInTheCart = cart.find()
-//   cart.push(product);
-//   console.log(
-//     'Se ha agregado el producto al carrito' + JSON.stringify(cart, null, 2),
-//   );
+  let productsInTheCart = cart.find(item => item.id == id)
+  if (productsInTheCart){
+    productsInTheCart.quantity +=1
+  }else {
+    cart.push({
+        ...product,
+        quantity: 1
+    })
+  }
+
+  
+
+  console.log(
+    'Se ha agregado el producto al carrito' + JSON.stringify(cart, null, 2),
+  );
 }
 
 // Exercise 2
