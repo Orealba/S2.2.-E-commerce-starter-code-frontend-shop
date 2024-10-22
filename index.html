@@ -59,13 +59,14 @@
           <ul
             class="navbar-nav me-3 me-lg-0 d-flex flex-row align-items-center">
             <li class="dropdown search-dropdown nav-item py-lg-3">
+              <!--AQUI CAMBIÉ EL ONCLICK OPEN_MODAL POR EL PRINT------------------------------->
               <a
                 href="javascript:void(0)"
                 class="btn btn-outline-dark flex-center"
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#cartModal"
-                onclick="open_modal()"
+                onclick="printCart()"
                 data-bs-auto-close="outside">
                 <i class="fas fa-shopping-cart me-1"></i> Cart
                 <span
@@ -409,9 +410,7 @@
                   <th scope="col">Total <small>(with discount)</small></th>
                 </tr>
               </thead>
-              <tbody id="cart_list">
-                
-              </tbody>
+              <tbody id="cart_list"></tbody>
             </table>
             <div class="text-center fs-3">
               Total: $<span id="total_price">100</span>

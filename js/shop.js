@@ -94,6 +94,7 @@ function buy(id) {
       quantity: 1,
     });
   }
+  applyPromotionsCart(cart);
   updateCartCaount();
 }
 
@@ -106,31 +107,57 @@ function updateCartCaount() {
 function cleanCart() {
   cart = [];
   document.getElementById('cart_list').innerHTML = '';
+
   calculateTotal();
   document.getElementById('total_price').textContent = total.toFixed(2);
-document.getElementById("count_product").textContent = "0"
-  
+  document.getElementById('count_product').textContent = '0';
 }
 
 // Exercise 3
 function calculateTotal() {
   // Calculate total price of the cart using the "cartList" array
+  applyPromotionsCart(cart);
   let total = 0;
   for (let i = 0; i < cart.length; i++) {
-    total += cart[i].price * cart[i].quantity;
+    if (cart[i].subtotalWithDiscount !== undefined) {
+      total += cart[i].subtotalWithDiscount;
+    } else {
+      total += cart[i].price * cart[i].quantity;
+    }
   }
   document.getElementById('total_price').textContent = total.toFixed(2);
 }
 
 // Exercise 4
-function applyPromotionsCart() {
+function applyPromotionsCart(cart) {
   // Apply promotions to each item in the array "cart"
+  cart.forEach((item) => {
+    let product = products.find((p) => p.id == item.id);
+    if (product && product.offer) {
+      if (
+        product.name === 'cooking oil' &&
+        item.quantity >= product.offer.number
+      ) {
+        item.subtotalWithDiscount =
+          item.price * item.quantity * (1 - product.offer.percent / 100);
+      } else if (
+        product.name === 'Instant cupcake mixture' &&
+        item.quantity >= product.offer.number
+      ) {
+        item.subtotalWithDiscount =
+          item.price * item.quantity * (1 - product.offer.percent / 100);
+      } else {
+        item.subtotalWithDiscount = undefined;
+      }
+    }
+  });
 }
 
 // Exercise 5
 function printCart() {
   // Fill the shopping cart modal manipulating the shopping cart dom
 
+  document.getElementById('cart_list').innerHTML = '';
   cart.forEach((item) => {
     let row = document.createElement('tr');
     let productCell = document.createElement('th');
@@ -152,6 +179,7 @@ function printCart() {
     row.appendChild(totalCell);
     document.getElementById('cart_list').appendChild(row);
   });
+
   calculateTotal();
 }
 
@@ -161,6 +189,6 @@ function printCart() {
 function removeFromCart(id) {}
 
 function open_modal() {
-  printCart();
-  console.log(cart);
+  //   printCart();
+  //   console.log(cart);
 }
