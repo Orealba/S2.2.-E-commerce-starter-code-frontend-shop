@@ -85,29 +85,41 @@ function buy(id) {
     return;
   }
 
-  let productsInTheCart = cart.find(item => item.id == id)
-  if (productsInTheCart){
-    productsInTheCart.quantity +=1
-  }else {
+  let productsInTheCart = cart.find((item) => item.id == id);
+  if (productsInTheCart) {
+    productsInTheCart.quantity += 1;
+  } else {
     cart.push({
-        ...product,
-        quantity: 1
-    })
+      ...product,
+      quantity: 1,
+    });
   }
+  updateCartCaount();
+}
 
-  
-
-  console.log(
-    'Se ha agregado el producto al carrito' + JSON.stringify(cart, null, 2),
-  );
+function updateCartCaount() {
+  let countOfProducts = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.getElementById('count_product').textContent = countOfProducts;
 }
 
 // Exercise 2
-function cleanCart() {}
+function cleanCart() {
+  cart = [];
+  document.getElementById('cart_list').innerHTML = '';
+  calculateTotal();
+  document.getElementById('total_price').textContent = total.toFixed(2);
+document.getElementById("count_product").textContent = "0"
+  
+}
 
 // Exercise 3
 function calculateTotal() {
   // Calculate total price of the cart using the "cartList" array
+  let total = 0;
+  for (let i = 0; i < cart.length; i++) {
+    total += cart[i].price * cart[i].quantity;
+  }
+  document.getElementById('total_price').textContent = total.toFixed(2);
 }
 
 // Exercise 4
@@ -118,6 +130,29 @@ function applyPromotionsCart() {
 // Exercise 5
 function printCart() {
   // Fill the shopping cart modal manipulating the shopping cart dom
+
+  cart.forEach((item) => {
+    let row = document.createElement('tr');
+    let productCell = document.createElement('th');
+    productCell.textContent = item.name;
+
+    let priceCell = document.createElement('td');
+    priceCell.textContent = `$${item.price}`;
+
+    let quantityCell = document.createElement('td');
+    quantityCell.textContent = item.quantity;
+
+    let totalCell = document.createElement('td');
+    let totalItemPrice = item.price * item.quantity;
+    totalCell.textContent = `$${totalItemPrice}`;
+
+    row.appendChild(productCell);
+    row.appendChild(priceCell);
+    row.appendChild(quantityCell);
+    row.appendChild(totalCell);
+    document.getElementById('cart_list').appendChild(row);
+  });
+  calculateTotal();
 }
 
 // ** Nivell II **
@@ -127,4 +162,5 @@ function removeFromCart(id) {}
 
 function open_modal() {
   printCart();
+  console.log(cart);
 }
