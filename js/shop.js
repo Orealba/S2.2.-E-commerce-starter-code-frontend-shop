@@ -188,7 +188,4 @@ function printCart() {
 // Exercise 7
 function removeFromCart(id) {}
 
-function open_modal() {
-  //   printCart();
-  //   console.log(cart);
-}
+function open_modal() {}
