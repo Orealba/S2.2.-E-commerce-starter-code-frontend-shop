@@ -124,7 +124,10 @@
       class="pt-5"
       id="grocery">
       <h1 class="text-center">
-        <i class="fas fa-shopping-basket pe-3" style="color: rgb(9, 97, 46);"></i>Grocery
+        <i
+          class="fas fa-shopping-basket pe-3"
+          style="color: rgb(9, 97, 46)"></i
+        >Grocery
       </h1>
       <div class="container px-4 px-lg-5 mt-5">
         <div
@@ -216,7 +219,12 @@
     <section
       class="pt-5"
       id="beauty">
-      <h1 class="text-center"><i class="fas fa-heart pe-3" style="color: rgb(227, 92, 186);"></i>Beauty</h1>
+      <h1 class="text-center">
+        <i
+          class="fas fa-heart pe-3"
+          style="color: rgb(227, 92, 186)"></i
+        >Beauty
+      </h1>
       <div class="container px-4 px-lg-5 mt-5">
         <div
           class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -307,7 +315,12 @@
     <section
       class="pt-5"
       id="clothes">
-      <h1 class="text-center"><i class="fas fa-tshirt pe-3" style="color: rgb(64, 124, 216);"></i>Clothes</h1>
+      <h1 class="text-center">
+        <i
+          class="fas fa-tshirt pe-3"
+          style="color: rgb(64, 124, 216)"></i
+        >Clothes
+      </h1>
       <div class="container px-4 px-lg-5 mt-5">
         <div
           class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -433,7 +446,8 @@
                   <th scope="col">Product</th>
                   <th scope="col">Price</th>
                   <th scope="col">Qty.</th>
-                  <th scope="col">Total <small>(with discount)</small></th>
+                  <th scope="col">Total <small>(without discount)</small></th>
+                  <th scope="col">Remove</th>
                 </tr>
               </thead>
               <tbody id="cart_list"></tbody>
@@ -466,8 +480,12 @@
       crossorigin="anonymous"></script>
 
     <!-- Core theme JS-->
-    <script src="js/shop.js"></script>
+    <script
+      type="module"
+      src="js/shop.js"></script>
     <script src="js/checkout.js"></script>
-    <script src="js/products.js"></script>
+    <script
+      type="module"
+      src="js/products.js"></script>
   </body>
 </html>

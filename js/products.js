@@ -62,3 +62,5 @@ var products = [
     type: 'clothes',
   },
 ];
+export { products };
+

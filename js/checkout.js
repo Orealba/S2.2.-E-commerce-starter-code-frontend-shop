@@ -100,5 +100,6 @@ function validate(e) {
     alert('Por favor, coloque de forma correcta los campos en rojo.');
   } else {
     alert('Formulario completado correctamente.');
+    window.location.href = 'index.html';
   }
 }
