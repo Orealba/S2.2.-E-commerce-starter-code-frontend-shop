@@ -1,8 +1,7 @@
-// Exercise 6
 function validate(e) {
   e.preventDefault();
   let error = 0;
-  // Get the input fields
+
   let fName = document.getElementById('fName');
   let fEmail = document.getElementById('fEmail');
   let fLastN = document.getElementById('fLastN');
@@ -10,7 +9,6 @@ function validate(e) {
   let fPassword = document.getElementById('fPassword');
   let fPhone = document.getElementById('fPhone');
 
-  // Get the error elements
   let errorName = document.getElementById('errorName');
   let errorEmail = document.getElementById('errorEmail');
   let errorLastN = document.getElementById('errorLastN');
@@ -18,12 +16,11 @@ function validate(e) {
   let errorPassword = document.getElementById('errorPassword');
   let errorPhone = document.getElementById('errorPhone');
 
-  let letters = /^[A-Za-z]+$/;
+  let letters =
+    /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g;
   let numbers = /^[0-9]+$/;
   let lettersandNumbers = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,8}$/;
   let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-  // Validate fields entered by the user: name, phone, password, and email
 
   if (
     fName.value == '' ||
@@ -87,11 +84,16 @@ function validate(e) {
     errorPassword.style.display = 'none';
   }
 
-  if (fPhone.value == '' || !fPhone.value.match(numbers)) {
+  if (
+    fPhone.value == '' ||
+    !fPhone.value.match(numbers) ||
+    fPhone.value.length > 9
+  ) {
     error++;
     fPhone.classList.add('is-invalid');
     errorPhone.style.display = 'block';
-    errorPhone.textContent = 'El teléfono sólo debe contener números';
+    errorPhone.textContent =
+      'El teléfono sólo debe contener números y debe tener 9 cifras';
   } else {
     fPhone.classList.remove('is-invalid');
     errorPhone.style.display = 'none';
