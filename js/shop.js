@@ -39,7 +39,6 @@ function cleanCart() {
 }
 
 function calculateTotal() {
-  // Calculate total price of the cart using the "cartList" array
   applyPromotionsCart(cart);
   let total = 0;
   for (let i = 0; i < cart.length; i++) {
@@ -55,22 +54,11 @@ function calculateTotal() {
 function applyPromotionsCart(cart) {
   cart.forEach((item) => {
     let product = products.find((p) => p.id == item.id);
-    if (product && product.offer) {
-      if (
-        product.name === 'cooking oil' &&
-        item.quantity >= product.offer.number
-      ) {
-        item.subtotalWithDiscount =
-          item.price * item.quantity * (1 - product.offer.percent / 100);
-      } else if (
-        product.name === 'Instant cupcake mixture' &&
-        item.quantity >= product.offer.number
-      ) {
-        item.subtotalWithDiscount =
-          item.price * item.quantity * (1 - product.offer.percent / 100);
-      } else {
-        item.subtotalWithDiscount = undefined;
-      }
+    if (product && product.offer && item.quantity >= product.offer.number) {
+      item.subtotalWithDiscount =
+        item.price * item.quantity * (1 - product.offer.percent / 100);
+    } else {
+      item.subtotalWithDiscount = undefined;
     }
   });
 }
